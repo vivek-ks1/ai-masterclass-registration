@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Masterclass Registration</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <i class="ai-icon fas fa-brain"></i>
+            <h1>Join Our AI Masterclass</h1>
+            <p>Transform How You Learn and Work!</p>
+        </header>
+
+        <div class="session-details">
+            <h2>40-Minute Intensive AI Exploration</h2>
+            <div class="key-topics">
+                <div class="topic">
+                    <i class="fas fa-tools"></i>
+                    <h3>AI Tools Introduction</h3>
+                    <p>Master essential AI tools for task automation</p>
+                </div>
+                <!-- Add more topic sections -->
+            </div>
+        </div>
+
+        <div class="countdown-timer">
+            <p>Next Session Starts in:</p>
+            <div class="timer" id="countdown">00:40:00</div>
+        </div>
+
+        <form class="registration-form">
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <input type="text" placeholder="Job Title (Optional)">
+            <button type="submit" class="cta-button">Secure Your Spot Now</button>
+            <p class="limited-seats">Limited seats available</p>
+        </form>
+
+        <div class="testimonials">
+            <div class="testimonial-card">
+                <p>"This masterclass transformed my workflow with practical AI tools!"</p>
+                <p class="author">- Jane Doe, Tech Corp</p>
+            </div>
+            <!-- Add more testimonials -->
+        </div>
+    </div>
+
+    <script>
+        // Countdown timer
+        function updateTimer() {
+            const sessionTime = new Date();
+            sessionTime.setMinutes(sessionTime.getMinutes() + 40);
+            
+            function update() {
+                const now = new Date().getTime();
+                const distance = sessionTime - now;
+                
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('countdown').innerHTML = 
+                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (distance < 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById('countdown').innerHTML = "SESSION STARTED!";
+                }
+            }
+            
+            update();
+            const timerInterval = setInterval(update, 1000);
+        }
+
+        updateTimer();
+    </script>
+</body>
+</html>
